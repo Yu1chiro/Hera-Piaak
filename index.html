@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hera ❤️ Piakk</title>
+<!-- semoga ini menjadi karya abadi di dalam hidup ku dan hidupmu -->
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Work+Sans:wght@100;300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <!-- Lightbox2 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
+  <!-- Bootstrap Icons (only for icons, no BS layout) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <!-- simplyCountdown -->
+  <link rel="stylesheet" href="countdown/simplyCountdown.theme.default.css" />
+  <script src="countdown/simplyCountdown.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sacramento: ['Sacramento', 'cursive'],
+            work: ['Work Sans', 'sans-serif'],
+          },
+          colors: {
+            pink: '#f14e95',
+            bg: '#0a0a0a',
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --pink: #f14e95;
+      --bg: #0a0a0a;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Work Sans', sans-serif;
+    }
+
+    /* ── HERO ── */
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('https://ik.imagekit.io/yuidev25/4%20years%20ago%20memories%20/4.jpeg');
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(10,10,10,0.7) 100%);
+      z-index: 1;
+    }
+    .hero-content { position: relative; z-index: 2; }
+
+    /* ── COUNTDOWN OVERRIDE ── */
+    .simply-countdown { display: flex; gap: 1rem; justify-content: center; margin: 1.5rem 0; }
+    .simply-countdown > .simply-section {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 12px;
+      padding: 1rem 1.4rem;
+      min-width: 70px;
+      color: white;
+    }
+    .simply-countdown > .simply-section .simply-amount {
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1;
+      color: #fff;
+    }
+    .simply-countdown > .simply-section .simply-word {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.75);
+      margin-top: 4px;
+    }
+
+    /* ── NAVBAR ── */
+    .glass-nav {
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    #mobile-menu {
+      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+    #mobile-menu.open {
+      max-height: 300px;
+      opacity: 1;
+    }
+
+    /* ── HOME / COUPLE SECTION ── */
+    .home-section {
+      background-image: url('img/ayamHD.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* heart float button */
+    .heart-float {
+      width: 52px; height: 52px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      display: flex; align-items: center; justify-content: center;
+      position: absolute;
+      left: 50%; transform: translateX(-50%) translateY(26px);
+      z-index: 10;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline { list-style: none; padding: 1.4rem 0; margin-top: 1rem; position: relative; }
+    .timeline::before {
+      content: ''; top: 0; bottom: 0;
+      position: absolute; width: 2px;
+      background: linear-gradient(180deg, transparent, var(--pink), transparent);
+      left: 50%;
+    }
+    .timeline li { margin-bottom: 3rem; position: relative; }
+    .timeline li::after { content: ''; display: table; clear: both; }
+
+    .timeline-image {
+      width: 150px; height: 150px;
+      background-color: #ddd;
+      position: absolute; left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background-size: cover; background-position: center;
+      border: 4px solid white;
+      box-shadow: 0 4px 20px rgba(241,78,149,0.3);
+      z-index: 5;
+    }
+
+    .timeline-panel {
+      width: 42%; float: left;
+      border: 1px solid #e8e8e8;
+      padding: 1.8rem;
+      position: relative;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      backdrop-filter: blur(4px);
+    }
+    .timeline-panel::before {
+      content: ''; display: inline-block; position: absolute;
+      border-top: 14px solid transparent;
+      border-left: 14px solid #e8e8e8;
+      border-right: 0; border-bottom: 14px solid transparent;
+      top: 76px; right: -14px;
+    }
+    .timeline-panel::after {
+      content: ''; position: absolute; display: inline-block;
+      border-top: 13px solid transparent;
+      border-left: 13px solid rgba(255,255,255,0.95);
+      border-right: 0; border-bottom: 13px solid transparent;
+      top: 77px; right: -12px;
+    }
+
+    .timeline li.timeline-inverted .timeline-panel { float: right; }
+    .timeline li.timeline-inverted .timeline-panel::before { border-left-width: 0; border-right-width: 14px; left: -14px; right: auto; }
+    .timeline li.timeline-inverted .timeline-panel::after { border-left-width: 0; border-right-width: 13px; left: -12px; right: auto; }
+
+    /* ── AUDIO ICON ── */
+    .audio-icon-wrapper {
+      width: 3.5rem; height: 3.5rem;
+      position: fixed; bottom: 2rem; right: 1.5rem;
+      cursor: pointer; color: white;
+      opacity: 0.7; mix-blend-mode: difference;
+      animation: rotating 4s linear infinite;
+      transform-origin: center;
+      display: flex; justify-content: center; align-items: center;
+      font-size: 2.8rem;
+      z-index: 9999;
+    }
+    @keyframes rotating {
+      from { transform: rotate(0); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── LIGHTBOX OVERRIDE ── */
+    .lb-overlay { background: rgba(0,0,0,0.9) !important; }
+
+    /* ── STORY / GALLERY BACKGROUND ── */
+    .story-section, .gallery-section, .gifts-section {
+      background-image: url('img/ayamHD.png');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+
+    /* ── LETTER CARD ── */
+    .letter-card {
+      background: linear-gradient(135deg, #fff9fb 0%, #fff0f6 100%);
+      border: 1px solid rgba(241,78,149,0.2);
+      border-radius: 20px;
+      box-shadow: 0 8px 40px rgba(241,78,149,0.1);
+    }
+    .letter-card p {
+      white-space: pre-line;
+      line-height: 1.9;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 992px) {
+      .timeline::before { left: 60px; }
+      .timeline-image { left: 15px; margin-left: 45px; top: 16px; transform: none; }
+      .timeline-panel { width: calc(100% - 200px); float: right; }
+      .timeline-panel::before { border-left-width: 0; border-right-width: 14px; left: -14px; right: auto; }
+      .timeline-panel::after { border-left-width: 0; border-right-width: 13px; left: -12px; right: auto; }
+      .heart-float { display: none; }
+    }
+    @media (max-width: 576px) {
+      .timeline-image { width: 80px; height: 80px; }
+      .timeline-panel { width: 65%; transform: translateX(-20px); }
+      .timeline-panel::before { top: 28px; }
+      .timeline-panel::after { top: 29px; }
+    }
+
+    /* ── FADE-IN PAGE LOAD ── */
+    body { opacity: 0; transition: opacity 0.6s ease; }
+    body.loaded { opacity: 1; }
+
+    /* ── FLOATING HEARTS PARTICLE ── */
+    .floating-hearts { pointer-events: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9998; overflow: hidden; }
+    .fheart {
+      position: absolute;
+      bottom: -60px;
+      animation: floatUp linear infinite;
+      opacity: 0;
+      font-size: 1.2rem;
+      color: rgba(241,78,149,0.6);
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(0) rotate(0deg);   opacity: 0; }
+      10%  { opacity: 0.8; }
+      90%  { opacity: 0.4; }
+      100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ── SECTION HEADINGS ── */
+    .section-title { font-family: 'Sacramento', cursive; font-size: clamp(3rem, 8vw, 5rem); font-weight: 700; }
+    .section-label { text-transform: uppercase; color: #888; font-size: 0.9rem; letter-spacing: 3px; display: block; margin-bottom: 0.5rem; }
+
+    /* ── GALLERY GRID ── */
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+    .gallery-grid a img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; transition: transform 0.35s ease, box-shadow 0.35s ease; display: block; }
+    .gallery-grid a:hover img { transform: scale(1.04); box-shadow: 0 8px 30px rgba(241,78,149,0.3); }
+
+    /* ── COUPLE IMAGES ── */
+    .couple-img {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+      box-shadow: 0 4px 20px rgba(241,78,149,0.25);
+    }
+
+    /* ── OPEN BUTTON ── */
+    .open-btn {
+      display: inline-block;
+      padding: 0.9rem 2.8rem;
+      background: white;
+      color: var(--pink);
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 999px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s, transform 0.2s;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+    .open-btn:hover { background: var(--pink); color: white; transform: scale(1.05); }
+
+    /* ── NAV LINK ACTIVE ── */
+    .nav-link-item {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: white;
+      transition: color 0.2s;
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+    }
+    .nav-link-item:hover { color: var(--pink); background: rgba(255,255,255,0.1); }
+
+    /* scroll lock helper */
+    body.no-scroll { overflow: hidden; }
+
+    /* ── RSVP / INFO DARK ── */
+    .dark-section { background-color: var(--bg); }
+  </style>
+</head>
+<body class="font-work">
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════ -->
+<section id="hero" class="hero-bg relative min-h-screen flex items-center justify-center text-center text-white overflow-hidden">
+  <div class="hero-overlay"></div>
+  <div class="hero-content px-4 w-full max-w-2xl mx-auto" style="text-shadow:0 2px 6px rgba(0,0,0,0.6)">
+    <h4 class="text-xl font-semibold mb-2 tracking-wide" style="font-size:1.25rem">Archive relationship ♡ <span id="pronoun-name"></span></h4>
+    <h1 data-aos="zoom-in" data-aos-duration="2000" data-aos-delay="200"
+        class="font-sacramento text-8xl md:text-9xl font-bold leading-none mb-4"
+        style="font-family:'Sacramento',cursive;font-size:clamp(4rem,14vw,7rem);text-shadow:0 4px 20px rgba(0,0,0,0.6)">
+      Hera &amp; Piakk
+    </h1>
+    <p class="text-lg mb-4 opacity-90">Klik untuk buka ya!</p>
+    <div class="simply-countdown flex justify-center"></div>
+    <a href="#home" class="open-btn mt-6 inline-block" onclick="enableScroll()">Open ✨</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════ -->
+<nav class="glass-nav sticky top-0 z-50 transition-all duration-300" id="navbar">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="#" class="font-sacramento text-3xl font-bold text-white drop-shadow" style="font-family:'Sacramento',cursive;font-size:2rem">
+      Hera ❤️ Piak
+    </a>
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-center gap-2">
+      <a href="#home"    class="nav-link-item">Home</a>
+      <a href="#story"   class="nav-link-item">Story</a>
+      <a href="#gallery" class="nav-link-item">Gallery</a>
+    </div>
+    <!-- Hamburger -->
+    <button id="menu-btn" class="md:hidden text-white focus:outline-none p-2 rounded-lg hover:bg-white/10 transition" aria-label="Menu">
+      <i class="bi bi-list text-2xl"></i>
+    </button>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden px-4 pb-2">
+    <a href="#home"    onclick="closeMobileMenu()" class="block nav-link-item py-2">Home</a>
+    <a href="#story"   onclick="closeMobileMenu()" class="block nav-link-item py-2">Story</a>
+    <a href="#gallery" onclick="closeMobileMenu()" class="block nav-link-item py-2">Gallery</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     HOME / COUPLE
+═══════════════════════════════════════════════ -->
+<section id="home" class="home-section py-24 px-4" style="margin-top:-5rem;padding-top:8rem">
+  <div class="max-w-5xl mx-auto">
+    <!-- Title -->
+    <div class="text-center mb-16" data-aos="zoom-in" data-aos-duration="1800">
+      <h2 class="section-title text-white drop-shadow-lg">Hera ❤️ Piak</h2>
+    </div>
+
+    <!-- Couple cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative" style="margin-top:3rem">
+
+      <!-- Hera -->
+      <div data-aos="zoom-in" data-aos-duration="1800" data-aos-delay="200"
+           class="flex items-center gap-5 bg-white/80 backdrop-blur rounded-2xl p-6 shadow-xl justify-end text-right">
+        <div>
+          <h3 class="font-sacramento text-4xl font-bold text-gray-800" style="font-family:'Sacramento',cursive">Hera</h3>
+          <p class="text-gray-700 text-sm leading-relaxed mt-1">Penyabar, Positif thinking, Tenang, Lawak, Cuek, Dingin, Suka makek emot buwong🐦, auk-auk moment</p>
+        </div>
+        <img src="img/Hera.png" alt="Hera" class="couple-img flex-shrink-0">
+      </div>
+
+      <!-- Heart badge -->
+      <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10
+                  w-14 h-14 bg-white rounded-full shadow-xl items-center justify-center">
+        <i class="bi bi-heart-fill text-2xl" style="color:var(--pink)"></i>
+      </div>
+
+      <!-- Piakk -->
+      <div data-aos="zoom-in" data-aos-duration="1800" data-aos-delay="400"
+           class="flex items-center gap-5 bg-white/80 backdrop-blur rounded-2xl p-6 shadow-xl text-left">
+        <img src="img/Piakk.png" alt="Piakk" class="couple-img flex-shrink-0">
+        <div>
+          <h3 class="font-sacramento text-4xl font-bold text-gray-800" style="font-family:'Sacramento',cursive">Piakk</h3>
+          <p class="text-gray-700 text-sm leading-relaxed mt-1">Lucook, cemburuan, bocell, suka anak ayam🐤🐤, suka koceng, manjaa, suka ngemil brutal, suka yang manis-manis, effort +++</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     STORY
+═══════════════════════════════════════════════ -->
+<section id="story" class="story-section py-28 px-4">
+  <div class="max-w-5xl mx-auto">
+    <!-- Heading -->
+    <div class="text-center mb-16" data-aos="fade-up">
+      <span class="section-label">Story 2022–2023❤️</span>
+      <h2 class="section-title text-gray-900">Hera &amp; Piakk</h2>
+    </div>
+
+    <!-- Timeline -->
+    <ul class="timeline">
+
+      <li data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/st1.png)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">Meet Pertama</h3>
+          <span class="text-xs text-pink-400 font-semibold uppercase tracking-widest mb-3 block">05 Agustus 2022</span>
+          <p class="text-gray-600 text-sm leading-relaxed">🗣️Jadi pertama kali kita meet itu jam 7 malem di pantai camplung, disana kita cerita banyak hal baik kehidupan pribadi dan kehidupan ketika masih SMA, karena piaak lucook pas cerita 🐤 jadi aku gemes sendiri dan aku ngepat-pat dia karena lucook dan ini, merupakan foto awal kita meet❤️.</p>
+        </div>
+      </li>
+
+      <li class="timeline-inverted" data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/cmplung.jpeg)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">Date di penimbangan</h3>
+          <span class="text-xs text-pink-400 font-semibold uppercase tracking-widest mb-3 block">05 Agustus 2022</span>
+          <p class="text-gray-600 text-sm leading-relaxed">🗣️ jadi ini ketika kita lagi ngedate di pantai penimbangan, ceritanya lagi double date 🐤 pas pulang ospek disana kita cerita dan ngobrol ga lupa juga sambil fotoan dan disana ayang ako lucook banget😾❤️</p>
+        </div>
+      </li>
+
+      <li data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/st2.jpeg)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">Couple Gelang</h3>
+          <span class="text-xs text-pink-400 font-semibold uppercase tracking-widest mb-3 block">27 Agustus 2022</span>
+          <p class="text-gray-600 text-sm leading-relaxed">🗣️Jadi ini pertama kali kita couple an gelang tridatu bareng, aku ngasih piakk suprise dan masangin dia gelang tridatu pas nge date di pantai camplung, dia lucook banget pas aku pasangin gelang❤️</p>
+        </div>
+      </li>
+
+      <li class="timeline-inverted" data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/st3.png)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">Main ke kos Piakk</h3>
+          <span class="text-xs text-pink-400 font-semibold uppercase tracking-widest mb-3 block">16 September 2022</span>
+          <p class="text-gray-600 text-sm leading-relaxed">🗣️ foto ini pas aku main ke kost piak buat nugas ospek sama ngadem main mobile legends, disana kita cerita sama main game bareng, dan disana juga piak bar-bar ciom aku beneran😾😾 dan itu first kiss aku di piakk❤️😾</p>
+        </div>
+      </li>
+
+      <li data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/couple.png)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">Couple Adat Bareng</h3>
+          <span class="text-xs text-pink-400 font-semibold uppercase tracking-widest mb-3 block">22 September 2022</span>
+          <p class="text-gray-600 text-sm leading-relaxed">🗣️ foto ini ketika kita ga sengaja couple an adat bareng pas hari kamis di kelas, disini ayang ako lucook banget dan kita pun fotoan dan pulang bareng, ayang ako sangat-sangat lucook❤️😾</p>
+        </div>
+      </li>
+
+      <li class="timeline-inverted" data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/avt.png)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">Pentas</h3>
+          <span class="text-xs text-pink-400 font-semibold uppercase tracking-widest mb-3 block">31 Oktober 2022</span>
+          <p class="text-gray-600 text-sm leading-relaxed">🗣️ jadi ini pas aku tampil di pentas awata festival disana ayang aku nonton aku pentas, dan ayang aku juga potong rambut lucook banget bocil aku, 😾 pas pentas aku kaget ayang aku bawain aku minuman gapeduli apapun yang penting terobos aja, karena ayang ako ga ngebiarin aku kehausan lucook,🥺 habis pentas akhirnya kita fotoan bareng yey🐤❤️</p>
+        </div>
+      </li>
+
+      <li data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/st4.jpeg)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">TimeZone</h3>
+          <span class="text-xs text-pink-400 font-semibold uppercase tracking-widest mb-3 block">31 Desember 2022</span>
+          <p class="text-gray-600 text-sm leading-relaxed">🗣️ ini pertama kali aku sama ayang main ke timezone disana kita nyoba semua game, kita juga main boneka capit sama nyoba karaoke cuman dapet zonk xixixi 🐤 akhirnya kita coba jam dino, dan lucky nya pas aku nyoba main jam dino aku dapet bingo yey dan ini foto kita pas dapet banyak tiket 😾❤️</p>
+        </div>
+      </li>
+
+      <li class="timeline-inverted" data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/be1.png)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">Pura Bedugul</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">🗣️ jadi ini pas kita ayang aku ikut sembahyang bareng di pura bedugul, ayang aku lucook banget pas udah nyampe katanya tempatnya sejuk dan adem disana ayang nemenin aku sembahyang sampe ke pura puncak, disana juga kita nemu beberapa monyet yang galak, dan ini foto pas kita udah mau balek 😾❤️</p>
+        </div>
+      </li>
+
+      <li data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/be2.png)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">Danau Tamblingan</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">🗣️ ini foto pas aku sama ayang main ke taman wanagiri habis lese UTS pas smester 1 deket danau tamblingan, ayang aku juga baru pertama kali kesini dan katanya pemandangan danaunya bagus, disana aku manja-manja sama ayang sambil oppai sawaru 🐤 disana ayang aku lucook banget 😾❤️</p>
+        </div>
+      </li>
+
+      <li class="timeline-inverted" data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/be3.png)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">Danau Buyan</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">🗣️ jadi ini foto ketika aku sama ayang refreshing main ke danau buyan pas hari jumat ga ada matkul, kita pegi ke bedugul itu siang dan pas sore kabutnya turun tebel banget dan ini foto aku pas manja ama ayang, ayang ako lucook kan 😾❤️</p>
+        </div>
+      </li>
+
+      <li data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/pkb.png)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">Art Center</h3>
+          <span class="text-xs text-pink-400 font-semibold uppercase tracking-widest mb-3 block">18 Juli 2023</span>
+          <p class="text-gray-600 text-sm leading-relaxed">🐤 jadi ini pas kita pergi ke art center buat nonton pameran sama pementasan bali, ayang aku excited banget lucook disana kita keliling art center pkb buat liat pameran-pameran, ga lupa juga disana kita jajan dan beli makan bareng ini foto kita pas foto di panggun terbuka yey, disana ayang aku lucook banget 🥺❤️</p>
+        </div>
+      </li>
+
+      <li class="timeline-inverted" data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/mantai.png)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">Mantai</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">🗣️ jadi ini pas ayang aku pengen mantai sore, pengen maen air tapi jatuhnya mandi 🐤 ini foto kita yey lucook😾❤️</p>
+        </div>
+      </li>
+
+      <li data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/karngsem.png)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">Karangasem</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">🐤 foto ini ketika aku sama ayang pegi main ke desa aku ayang juga pengen ke pantai yang ada di desa aku, ini pas kita lagi nyari spot foto di desa tulamben dan beruntungnya gunung agungnya keliatan jelas banget😾❤️</p>
+        </div>
+      </li>
+
+      <li class="timeline-inverted" data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/bugbug.png)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">Pantai</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">🐤 jadi ini pas aku sama ayang mandi di pantai desa bugbug, ayang bilang ombaknya gede dan ayang langsung mandi hmmm bocel 😾, beruntungnya cuacanya disana cerah banget dan ini foto kita pas lagi maen air😾❤️</p>
+        </div>
+      </li>
+
+      <li data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/ichigo.png)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">Metik Ichigo</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">🗣️jadi ini foto kebun ketika aku sama ayang pegi metik ichigo di bedugul, dan aku metikin ayang ichigo yang gede karena ayang suka ichigo yang gede-gede jadi aku habisin metik di kebun nya🐤</p>
+        </div>
+      </li>
+
+      <li class="timeline-inverted" data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/fanart.png)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">Lomba Gambar</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">🐤 Jadi pas itu smansa lagi ngadain loma fanart competition tapi yang di khususkan di lomba itu lingkup anak SMA, dan ayang aku ikutan lomba itu aga laen 🐤🐤 padahal dia bukan SMA tapi gambar ayang ako bagus banget diantara yang lain 🥺❤️ akhirnya ayang ako dapet juara 3 dan aku bangga banget bisa support ayang😾❤️</p>
+        </div>
+      </li>
+
+      <li data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/cost.png)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">Inspi Evening</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">🗣️ Jadi ini pas acara inspi evening encore sama hmj collab event bareng, padahal kemaren nya sempet ada masalah xixixi dan kagetnya ayang aku mau cosplay aaaa lucook 🥺❤️ jadi dia tu cosplay maid lucook ini foto kita pas fotbar bareng lucook kan😾❤️</p>
+        </div>
+      </li>
+
+      <li class="timeline-inverted" data-aos="fade-up">
+        <div class="timeline-image" style="background-image:url(img/Akm.png)"></div>
+        <div class="timeline-panel">
+          <h3 class="font-sacramento text-3xl text-gray-800 mb-1" style="font-family:'Sacramento',cursive">Akm 2023</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">🐤 Ini foto waktu aku tampil di Akm 2023 di taman bungkarno, ayang aku selalu dateng pas aku tampil nabuh katanya sukak liat aku main gamelan, ayang nyamperin aku di belakang panggung, dan ini pas kita fotoan bareng habis tu pulang bareng jugaa, ayang aku alwys lucook😾❤️</p>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     GALLERY
+═══════════════════════════════════════════════ -->
+<section id="gallery" class="gallery-section py-28 px-4">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <span class="section-label">2022–2023❤️</span>
+      <h2 class="section-title text-gray-900">Gallery Kita</h2>
+    </div>
+    <div class="gallery-grid" data-aos="fade-up" data-aos-duration="1200">
+      <a href="img/Hera1.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="img/Hera1.jpeg" alt="gallery"></a>
+      <a href="gallery/1.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/1.jpeg" alt="gallery"></a>
+      <a href="gallery/2.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/2.jpg" alt="gallery"></a>
+      <a href="gallery/3.webp" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/3.webp" alt="gallery"></a>
+      <a href="gallery/4.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/4.jpeg" alt="gallery"></a>
+      <a href="gallery/5.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/5.jpeg" alt="gallery"></a>
+      <a href="gallery/6.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/6.jpeg" alt="gallery"></a>
+      <a href="gallery/7.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/7.jpeg" alt="gallery"></a>
+      <a href="gallery/8.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/8.jpeg" alt="gallery"></a>
+      <a href="gallery/9.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/9.jpeg" alt="gallery"></a>
+      <a href="gallery/10.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/10.jpeg" alt="gallery"></a>
+      <a href="gallery/11.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/11.jpeg" alt="gallery"></a>
+      <a href="gallery/12.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/12.jpeg" alt="gallery"></a>
+      <a href="gallery/14.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/14.jpeg" alt="gallery"></a>
+      <a href="gallery/15.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/15.jpeg" alt="gallery"></a>
+      <a href="gallery/16.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/16.jpeg" alt="gallery"></a>
+      <a href="gallery/17.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/17.jpeg" alt="gallery"></a>
+      <a href="gallery/18.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/18.jpeg" alt="gallery"></a>
+      <a href="gallery/19.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/19.jpeg" alt="gallery"></a>
+      <a href="gallery/20.jpeg" data-lightbox="photos" data-title="Hera ❤️ Piakk"><img src="gallery/20.jpeg" alt="gallery"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     GIFTS / LETTER
+═══════════════════════════════════════════════ -->
+<section id="gifts" class="gifts-section py-28 px-4">
+  <div class="max-w-2xl mx-auto">
+    <div class="letter-card p-8 md:p-12" data-aos="fade-up" data-aos-duration="1400">
+      <h3 class="font-sacramento text-4xl text-center font-bold mb-6" style="font-family:'Sacramento',cursive;color:var(--pink)">
+        Letter For Piakk ♡
+      </h3>
+      <p class="text-gray-700 text-sm leading-loose">
+Piaak hera mau bilang sesuatu ke kamu, Ini merupakan karya digital yang akan selalu aku simpan sebagai kenangan yang abadi, sesuatu yang mungkin tidak akan hilang dimakan waktu. Semua cerita, tawa, perjalanan, dan momen kita akan tetap punya tempat di sini.
+
+Maaf kalau dulu banyak hal yang belum sempat aku berikan dengan sempurna. Mungkin aku tidak selalu bisa menunjukkan rasa sayang dengan hadiah, kejutan, atau hal-hal manis seperti yang orang lain lakukan. Bukan karena aku tidak mau, tapi karena aku selalu ingin memberikan sesuatu yang punya makna dan bisa dikenang.
+
+Aku mau mengucapkan terima kasih yang sebesar-besarnya karena kamu pernah hadir di hidupku. Terima kasih karena pernah jadi tempat pulang, tempat cerita, tempat aku merasa tenang di tengah banyak hal. Terima kasih sudah menemani banyak fase hidupku, di saat senang maupun sulit.
+
+Kalau hari ini kita sudah berjalan di jalan masing-masing, aku tetap bersyukur pernah mengenal kamu sedalam itu. Banyak hal baik dari dirimu yang masih hidup di dalam diriku sampai sekarang—cara berpikirmu, nasihatmu, perhatianmu, dan pelajaran tentang cinta yang tulus.
+
+Aku sadar mungkin dulu aku banyak kurangnya, banyak salahnya, dan banyak hal yang membuatmu terluka. Untuk semua itu, aku minta maaf.
+
+Sekarang aku tidak meminta apa-apa selain kebahagiaanmu. Melihat kamu bisa tersenyum lagi, tertawa lagi, dan menjalani hidup dengan tenang sudah cukup membuatku ikut lega.
+
+Terima kasih untuk semua kenangan yang manis. Walaupun kisah kita selesai, bagian indahnya akan selalu aku simpan dengan baik. Semoga kamu selalu bahagia, selalu dikelilingi hal-hal baik, dan dicintai dengan layak. Aku akan selalu mendoakan yang terbaik untukmu, karena kamu pantas mendapatkannya. Terima kasih sudah pernah jadi bagian dari hidupku, dan semoga kita berdua bisa terus menemukan kebahagiaan di jalan masing-masing. ♡
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
+<footer class="py-10 px-4 text-center" style="background:linear-gradient(135deg,#f14e95,#ff8cc8)">
+  <p class="text-white text-sm font-medium tracking-wide">
+    &copy; 2023 Hera ❤️ Piakk &nbsp;·&nbsp; Made with love 🌸
+  </p>
+</footer>
+
+<!-- ═══════════════════════════════════════════════
+     AUDIO
+═══════════════════════════════════════════════ -->
+<div id="audio-container">
+  <audio id="song" loop>
+    <source src="https://ik.imagekit.io/yuidev25/4%20years%20ago%20memories%20/Namo%20Guan%20Shi%20Yin%20Pusa.mp3" type="audio/mp3">
+  </audio>
+  <div class="audio-icon-wrapper" id="audioBtn" style="display:none">
+    <i class="bi bi-disc" id="audioIcon"></i>
+  </div>
+</div>
+
+<!-- Floating hearts container -->
+<div class="floating-hearts" id="heartsContainer"></div>
+
+<!-- ═══════════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════════ -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+<script>
+/* ── PAGE LOAD ── */
+window.addEventListener('load', () => {
+  document.body.classList.add('loaded');
+  AOS.init({ once: true, offset: 60 });
+  spawnHearts();
+});
+
+/* ── COUNTDOWN ── */
+if (typeof simplyCountdown === 'function') {
+  simplyCountdown('.simply-countdown', {
+    year: 2023, month: 11, day: 20, hours: 8,
+    words: {
+      days:    { singular: 'hari',  plural: 'hari'  },
+      hours:   { singular: 'jam',   plural: 'jam'   },
+      minutes: { singular: 'menit', plural: 'menit' },
+      seconds: { singular: 'detik', plural: 'detik' }
+    }
+  });
+}
+
+/* ── URL PARAMS ── */
+const urlParams = new URLSearchParams(window.location.search);
+const nama    = urlParams.get('n') || '';
+const pronoun = urlParams.get('p') || '';
+const pronounEl = document.getElementById('pronoun-name');
+if (pronounEl) pronounEl.textContent = `${pronoun} ${nama}`.replace(/ $/, '');
+
+/* ── SCROLL LOCK / UNLOCK ── */
+let scrollTop = 0, scrollLeft = 0;
+
+function disableScroll() {
+  scrollTop  = window.pageYOffset  || document.documentElement.scrollTop;
+  scrollLeft = window.pageXOffset  || document.documentElement.scrollLeft;
+  window.onscroll = () => window.scrollTo(scrollLeft, scrollTop);
+  document.documentElement.style.scrollBehavior = 'auto';
+}
+
+function enableScroll() {
+  window.onscroll = null;
+  document.documentElement.style.scrollBehavior = 'smooth';
+  playAudio();
+}
+
+disableScroll();
+
+/* ── AUDIO ── */
+const song      = document.getElementById('song');
+const audioBtn  = document.getElementById('audioBtn');
+const audioIcon = document.getElementById('audioIcon');
+let isPlaying   = false;
+
+function playAudio() {
+  song.volume = 0.2;
+  song.play().catch(() => {});
+  audioBtn.style.display = 'flex';
+  isPlaying = true;
+}
+
+audioBtn.onclick = function() {
+  if (isPlaying) {
+    song.pause();
+    audioIcon.className = 'bi bi-play-circle';
+    audioBtn.style.animationPlayState = 'paused';
+  } else {
+    song.play();
+    audioIcon.className = 'bi bi-disc';
+    audioBtn.style.animationPlayState = 'running';
+  }
+  isPlaying = !isPlaying;
+};
+
+/* ── MOBILE MENU ── */
+const menuBtn    = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+
+menuBtn.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open');
+});
+
+function closeMobileMenu() {
+  mobileMenu.classList.remove('open');
+}
+
+/* ── NAVBAR SCROLL TINT ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    navbar.style.background = 'rgba(10,10,10,0.75)';
+  } else {
+    navbar.style.background = 'rgba(255,255,255,0.18)';
+  }
+}, { passive: true });
+
+/* ── FLOATING HEARTS ── */
+function spawnHearts() {
+  const container = document.getElementById('heartsContainer');
+  const emojis = ['❤️','🐤','🌸','💕','😾'];
+  const N = 12;
+  for (let i = 0; i < N; i++) {
+    const el = document.createElement('span');
+    el.className = 'fheart';
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = (Math.random() * 100) + '%';
+    el.style.animationDuration = (8 + Math.random() * 14) + 's';
+    el.style.animationDelay    = (Math.random() * 12) + 's';
+    el.style.fontSize          = (0.9 + Math.random() * 1.2) + 'rem';
+    container.appendChild(el);
+  }
+}
+
+/* ── LIGHTBOX CONFIG ── */
+if (typeof lightbox !== 'undefined') {
+  lightbox.option({ resizeDuration: 200, wrapAround: true, albumLabel: 'Foto %1 dari %2' });
+}
+</script>
+
+</body>
+</html>
